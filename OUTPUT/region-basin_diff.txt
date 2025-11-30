@@ -1,0 +1,286 @@
+# Time:[2005-01-01]
+---
+## Target:[agri]
+
+max: 0.633
+min: -0.705
+mean: -0.003
+std: 0.053
+median: -0.000
+
+## Target:[grassland]
+
+max: 0.723
+min: -0.855
+mean: -0.020
+std: 0.080
+median: -0.002
+
+## Target:[forest]
+
+max: 1.000
+min: -1.000
+mean: -0.011
+std: 0.340
+median: 0.000
+
+# Time:[2010-01-01]
+---
+## Target:[agri]
+
+max: 0.610
+min: -0.686
+mean: -0.002
+std: 0.063
+median: -0.000
+
+## Target:[grassland]
+
+max: 0.723
+min: -0.860
+mean: -0.020
+std: 0.080
+median: -0.002
+
+## Target:[forest]
+
+max: 1.000
+min: -1.000
+mean: -0.014
+std: 0.340
+median: 0.000
+
+# Time:[2020-01-01]
+---
+## Target:[agri]
+
+max: 0.639
+min: -0.567
+mean: 0.000
+std: 0.070
+median: 0.004
+
+## Target:[grassland]
+
+max: 0.813
+min: -0.979
+mean: -0.014
+std: 0.086
+median: -0.001
+
+## Target:[forest]
+
+max: 1.000
+min: -1.000
+mean: -0.016
+std: 0.340
+median: -0.001
+
+# Time:[2030-01-01]
+---
+## Target:[agri]
+
+max: 0.710
+min: -0.579
+mean: 0.000
+std: 0.076
+median: 0.003
+
+## Target:[grassland]
+
+max: 0.843
+min: -1.000
+mean: -0.013
+std: 0.096
+median: -0.000
+
+## Target:[forest]
+
+max: 1.000
+min: -1.000
+mean: -0.012
+std: 0.335
+median: -0.001
+
+# Time:[2040-01-01]
+---
+## Target:[agri]
+
+max: 0.776
+min: -0.658
+mean: 0.001
+std: 0.083
+median: 0.005
+
+## Target:[grassland]
+
+max: 0.925
+min: -1.000
+mean: -0.012
+std: 0.111
+median: -0.000
+
+## Target:[forest]
+
+max: 1.000
+min: -1.000
+mean: -0.011
+std: 0.335
+median: -0.001
+
+# Time:[2050-01-01]
+---
+## Target:[agri]
+
+max: 0.743
+min: -0.668
+mean: 0.001
+std: 0.091
+median: 0.007
+
+## Target:[grassland]
+
+max: 0.942
+min: -1.000
+mean: -0.011
+std: 0.122
+median: -0.000
+
+## Target:[forest]
+
+max: 1.000
+min: -1.000
+mean: -0.011
+std: 0.337
+median: -0.002
+
+# Time:[2060-01-01]
+---
+## Target:[agri]
+
+max: 0.843
+min: -0.781
+mean: 0.001
+std: 0.100
+median: 0.008
+
+## Target:[grassland]
+
+max: 0.952
+min: -1.000
+mean: -0.010
+std: 0.131
+median: 0.000
+
+## Target:[forest]
+
+max: 1.000
+min: -1.000
+mean: -0.012
+std: 0.343
+median: -0.004
+
+# Time:[2070-01-01]
+---
+## Target:[agri]
+
+max: 0.830
+min: -0.815
+mean: 0.001
+std: 0.108
+median: 0.007
+
+## Target:[grassland]
+
+max: 0.952
+min: -1.000
+mean: -0.009
+std: 0.143
+median: 0.000
+
+## Target:[forest]
+
+max: 1.000
+min: -1.000
+mean: -0.014
+std: 0.351
+median: -0.006
+
+# Time:[2080-01-01]
+---
+## Target:[agri]
+
+max: 0.823
+min: -0.825
+mean: 0.001
+std: 0.116
+median: 0.008
+
+## Target:[grassland]
+
+max: 0.973
+min: -1.000
+mean: -0.009
+std: 0.151
+median: 0.000
+
+## Target:[forest]
+
+max: 1.000
+min: -1.000
+mean: -0.015
+std: 0.358
+median: -0.007
+
+# Time:[2090-01-01]
+---
+## Target:[agri]
+
+max: 0.825
+min: -0.833
+mean: 0.001
+std: 0.124
+median: 0.009
+
+## Target:[grassland]
+
+max: 0.973
+min: -1.000
+mean: -0.008
+std: 0.160
+median: 0.000
+
+## Target:[forest]
+
+max: 1.000
+min: -1.000
+mean: -0.014
+std: 0.363
+median: -0.004
+
+# Time:[2100-01-01]
+---
+## Target:[agri]
+
+max: 0.893
+min: -0.885
+mean: 0.001
+std: 0.131
+median: 0.009
+
+## Target:[grassland]
+
+max: 0.973
+min: -0.999
+mean: -0.008
+std: 0.168
+median: 0.000
+
+## Target:[forest]
+
+max: 1.000
+min: -1.000
+mean: -0.015
+std: 0.367
+median: -0.004
+
