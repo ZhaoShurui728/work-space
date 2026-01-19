@@ -15,7 +15,7 @@ df_wide = (
     .reset_index()
 )
 
-df_wide["Value"] = df_wide["CL"] - df_wide["CROP_FLW"]
+df_wide["Value"] = df_wide["CL"] - df_wide["CROP_FLW"].fillna(0)
 df_wide[["country", "basin"]] = df_wide["basin"].str.split("_", n=1, expand=True)
 df_final = df_wide[["basin", "country", "year", "Value"]].copy()
 
