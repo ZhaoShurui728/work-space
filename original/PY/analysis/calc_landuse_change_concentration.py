@@ -1,6 +1,6 @@
 import xarray as xr
 
-nc = xr.open_dataset("./work-space/original/NC/compare_diff.nc")
+nc = xr.open_dataset("./original/NC/compare_diff.nc")
 
 basin_diff = nc["basin_agri_diff"]
 region_diff = nc["region_agri_diff"]
@@ -60,6 +60,6 @@ df = pd.DataFrame({
 
 # 保存为 CSV
 df.to_csv(
-    "./work-space/original/CSV/landuse_change_concentration_timeseries.csv",
+    "./original/CSV/landuse_change_concentration_timeseries.csv",
     index=False
 )
