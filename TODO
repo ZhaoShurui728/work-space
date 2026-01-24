@@ -1,4 +1,9 @@
 Research:
+  2026/1/24-2026/1/31:
+    ☐ アブストラクトの修正・提出
+    ☐ 変化が小さい地域を抽出し、基準年とのKappa係数を求め、モードの安定性を比較する
+    ☐ 
+Archive:
   相談:
     ✘ 長谷川先生と相談（山崎さん~\AIMPLUM\tools\Gridmapping\prog\gridmapping_basin.R を確認しました。プログラム自体は正常に動作しており、各グリッドの割合の総和も問題なく 1 になっています。しかし、その後に作成した countrymap.gdx では、一部のグリッドがカウントされていないという状況が発生しました。~ AIMPLUM側とAgLU側の地図の一部が一致しないため、グリッドマッピング転換の時カウント落としが発生したようです。 @cancelled(25-12-15 11:01)
     ✔ 藤森先生と相談 GTAP発表について @done(26-01-14 17:40)
@@ -33,26 +38,23 @@ Research:
         ✘ 3.	各国/地域における差のbar chart @cancelled(26-01-14 17:40)
 
     考察:
-      ☐ 上の対応の項目の考察
+      ✘ 上の対応の項目の考察 @cancelled(26-01-24 23:39)
 
-Archive:
+    ASK:
+    ✔ CL,GL,FRS 怎么count的 @done(25-12-19 19:57)
+    ✔ nc算法的正确性 @done(25-12-19 19:57)
+    ✔ iamctamplate basin nodata @done(25-12-19 19:57)
+    ✔ nc文件中 农业分为了c3 c4 其中c4包含bio 但是gdx统计的cl不包含bio @done(25-12-19 19:57)
 
+    todo:
+    ✔ austrilia new zeland 比較 @done(25-12-15 16:26)
+    ✔ future simulation もう一回  @done(25-12-15 15:01) Base gdxから読み取る
+    ✔ 基準年との比較　Lにある @done(25-12-15 17:54)
+    ✔ 集約の項目をチェック　各basinのGDXはどうやって作ったのか @done(25-12-15 17:54)
 
-ASK:
-  ✔ CL,GL,FRS 怎么count的 @done(25-12-19 19:57)
-  ✔ nc算法的正确性 @done(25-12-19 19:57)
-  ✔ iamctamplate basin nodata @done(25-12-19 19:57)
-  ✔ nc文件中 农业分为了c3 c4 其中c4包含bio 但是gdx统计的cl不包含bio @done(25-12-19 19:57)
+    2026/01/19-2026/01/23:
+    ✔ ALPHAとPLUMのCL面積をチェック @done(26-01-19 22:21)
+    ✔ パワポイント修正 @done(26-01-19 22:21)
+    ✔ 発表補足資料を加え @done(26-01-21 10:37)
+    ✔ アブストラクト @done(26-01-24 23:39)
 
-todo:
-  ✔ austrilia new zeland 比較 @done(25-12-15 16:26)
-  ✔ future simulation もう一回  @done(25-12-15 15:01) Base gdxから読み取る
-  ✔ 基準年との比較　Lにある @done(25-12-15 17:54)
-  ✔ 集約の項目をチェック　各basinのGDXはどうやって作ったのか @done(25-12-15 17:54)
-
-
-2026/01/19-2026/01/23:
-✔ ALPHAとPLUMのCL面積をチェック @done(26-01-19 22:21)
-✔ パワポイント修正 @done(26-01-19 22:21)
-✔ 発表補足資料を加え @done(26-01-21 10:37)
-☐ アブストラクト
