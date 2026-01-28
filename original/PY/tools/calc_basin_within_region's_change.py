@@ -257,8 +257,8 @@ df_basin["same_direction"] = (
     df_basin["direction"] == df_basin["region_direction"]
 )
 df_result = df_basin[
-    (df_basin["within_20pct"]) &
-    (df_basin["same_direction"])
+    (df_basin["within_20pct"]) 
+    # &(df_basin["same_direction"])
 ]
 df_result = df_result[[
     "country",          # basin
@@ -270,6 +270,6 @@ df_result = df_result[[
     "region_direction"
 ]].sort_values(["region", "country"])
 df_result.to_csv(
-    "./original/CSV/compare_region_basin/basin_region_consistent_20pct.csv",
+    "./original/CSV/compare_region_basin/basin_region_consistent_20pct_NODIR.csv",
     index=False
 )

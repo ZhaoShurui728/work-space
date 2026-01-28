@@ -4,7 +4,7 @@ import numpy as np
 
 
 df_list = pd.read_csv(
-    "./original/CSV/compare_region_basin/basin_region_consistent_20pct.csv"
+    "./original/CSV/compare_region_basin/basin_region_consistent_20pct_NODIR.csv"
 )
 basin_keep = df_list["country"].unique().tolist()
 
@@ -41,8 +41,8 @@ nc_diff_masked = nc_diff.where(mask_da)
 
 
 nc_masked.to_netcdf(
-    "./original/NC/compare_region_basin_consistent.nc"
+    "./original/NC/compare_region_basin_consistent_NODIR.nc"
 )
 nc_diff_masked.to_netcdf(
-    "./original/NC/compare_diff_region_basin_consistent.nc"
+    "./original/NC/compare_diff_region_basin_consistent_NODIR.nc"
 )
