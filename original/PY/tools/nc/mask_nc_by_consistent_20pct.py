@@ -6,7 +6,7 @@ import numpy as np
 df_list = pd.read_csv(
     "./original/CSV/compare_region_basin/basin_region_consistent_20pct_NODIR.csv"
 )
-basin_keep = df_list["country"].unique().tolist()
+basin_keep = df_list["basin"].unique().tolist()
 
 
 nc = xr.open_dataset("./original/NC/compare.nc")

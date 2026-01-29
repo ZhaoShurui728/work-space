@@ -1,7 +1,19 @@
-import numpy as np 
+import numpy as np
 import pandas as pd
 
+# ======================
+# 参数开关（★只改这里★）
+# ======================
+CHECK_DIRECTION = False   # True = 看方向；False = 只看变化幅度
+
+# ======================
+# 读数据
+# ======================
 df = pd.read_csv("./original/CSV/compare_region_basin/basin_area.csv")
+
+# ======================
+# region → direction（仅在 CHECK_DIRECTION=True 时使用）
+# ======================
 region_direction_map = {
     "BRA": "decrease",
     "CAN": "increase",
@@ -13,263 +25,110 @@ region_direction_map = {
     "XNF": "decrease"
 }
 
+# ======================
+# country → region 映射
+# ======================
 mapping = {
-    "AFG": "XSA",
-    "ALB": "XER",
-    "DZA": "XNF",
-    "ASM": "XSA",
-    "AND": "XER",
-    "AGO": "XAF",
-    "ATG": "XLM",
-    "ARG": "XLM",
-    "ARM": "CIS",
-    "ABW": "XLM",
-    "AUS": "XOC",
-    "AUT": "XE25",
-    "AZE": "CIS",
-    "BHS": "XLM",
-    "BHR": "XME",
-    "BGD": "XSA",
-    "BRB": "XLM",
-    "BLR": "CIS",
-    "BEL": "XE25",
-    "BLZ": "XLM",
-    "BEN": "XAF",
-    "BMU": "XLM",
-    "BTN": "XSA",
-    "BOL": "XLM",
-    "BIH": "XER",
-    "BWA": "XAF",
-    "BRA": "BRA",
-    "VGB": "XLM",
-    "BRN": "XSA",
-    "BGR": "XER",
-    "BFA": "XAF",
-    "BDI": "XAF",
-    "CPV": "XAF",
-    "KHM": "XSE",
-    "CMR": "XAF",
-    "CAN": "CAN",
-    "CYM": "XLM",
-    "CAF": "XAF",
-    "TCD": "XAF",
-    "CHL": "XLM",
-    "CHN": "CHN",
-    "COL": "XLM",
-    "COM": "XAF",
-    "COD": "XAF",
-    "COG": "XAF",
-    "CRI": "XLM",
-    "CIV": "XAF",
-    "HRV": "XER",
-    "CUB": "XLM",
-    "CYP": "XE25",
-    "CZE": "XE25",
-    "DNK": "XE25",
-    "DJI": "XAF",
-    "DMA": "XLM",
-    "DOM": "XLM",
-    "ECU": "XLM",
-    "EGY": "XNF",
-    "SLV": "XLM",
-    "GNQ": "XAF",
-    "ERI": "XAF",
-    "EST": "XE25",
-    "SWZ": "XAF",
-    "ETH": "XAF",
-    "FRO": "XER",
-    "FJI": "XSA",
-    "FIN": "XE25",
-    "FRA": "XE25",
-    "PYF": "XSA",
-    "GAB": "XAF",
-    "GMB": "XAF",
-    "GEO": "CIS",
-    "DEU": "XE25",
-    "GHA": "XAF",
-    "GIB": "XER",
-    "GRC": "XE25",
-    "GRL": "XLM",
-    "GRD": "XLM",
-    "GUM": "XSA",
-    "GTM": "XLM",
-    "GIN": "XAF",
-    "GNB": "XAF",
-    "GUY": "XLM",
-    "HTI": "XLM",
-    "HND": "XLM",
-    "HKG": "CHN",
-    "HUN": "XE25",
-    "ISL": "XER",
-    "IND": "IND",
-    "IDN": "XSE",
-    "IRN": "XME",
-    "IRQ": "XME",
-    "IRL": "XE25",
-    "ISR": "XME",
-    "ITA": "XE25",
-    "JAM": "XLM",
-    "JPN": "JPN",
-    "JOR": "XME",
-    "KAZ": "CIS",
-    "KEN": "XAF",
-    "KIR": "XSA",
-    "PRK": "XSE",
-    "KOR": "XSE",
-    "KWT": "XME",
-    "KGZ": "CIS",
-    "LAO": "XSE",
-    "LVA": "XE25",
-    "LBN": "XME",
-    "LSO": "XAF",
-    "LBR": "XAF",
-    "LBY": "XNF",
-    "LIE": "XER",
-    "LTU": "XE25",
-    "LUX": "XE25",
-    "MAC": "CHN",
-    "MDG": "XAF",
-    "MWI": "XAF",
-    "MYS": "XSE",
-    "MDV": "XSA",
-    "MLI": "XAF",
-    "MLT": "XE25",
-    "MHL": "XSA",
-    "MRT": "XAF",
-    "MUS": "XAF",
-    "MEX": "XLM",
-    "FSM": "XSA",
-    "MDA": "CIS",
-    "MCO": "XER",
-    "MNG": "XSE",
-    "MNE": "XER",
-    "MAR": "XNF",
-    "MOZ": "XAF",
-    "MMR": "XSE",
-    "NAM": "XAF",
-    "NRU": "XSA",
-    "NPL": "XSA",
-    "NLD": "XE25",
-    "NCL": "XSA",
-    "NZL": "XOC",
-    "NIC": "XLM",
-    "NER": "XAF",
-    "NGA": "XAF",
-    "MKD": "XER",
-    "MNP": "XSA",
-    "NOR": "XER",
-    "OMN": "XME",
-    "PAK": "XSA",
-    "PLW": "XSA",
-    "PAN": "XLM",
-    "PNG": "XSA",
-    "PRY": "XLM",
-    "PER": "XLM",
-    "PHL": "XSE",
-    "POL": "XE25",
-    "PRT": "XE25",
-    "PRI": "XLM",
-    "QAT": "XME",
-    "ROU": "XER",
-    "RUS": "CIS",
-    "RWA": "XAF",
-    "WSM": "XSA",
-    "SMR": "XER",
-    "STP": "XAF",
-    "SAU": "XME",
-    "SEN": "XAF",
-    "SRB": "XER",
-    "SYC": "XAF",
-    "SLE": "XAF",
-    "SGP": "XSE",
-    "SVK": "XE25",
-    "SVN": "XE25",
-    "SLB": "XSA",
-    "SOM": "XAF",
-    "ZAF": "XAF",
-    "SSD": "XAF",
-    "ESP": "XE25",
-    "LKA": "XSA",
-    "KNA": "XLM",
-    "LCA": "XLM",
-    "VCT": "XLM",
-    "SDN": "XAF",
-    "SUR": "XLM",
-    "SWE": "XE25",
-    "CHE": "XER",
-    "SYR": "XME",
-    "TJK": "CIS",
-    "TZA": "XAF",
-    "THA": "XSE",
-    "TLS": "XSE",
-    "TGO": "XAF",
-    "TON": "XSA",
-    "TTO": "XLM",
-    "TUN": "XNF",
-    "TUR": "TUR",
-    "TKM": "CIS",
-    "TCA": "XLM",
-    "TUV": "XSA",
-    "UGA": "XAF",
-    "UKR": "CIS",
-    "ARE": "XME",
-    "GBR": "XE25",
-    "USA": "USA",
-    "URY": "XLM",
-    "UZB": "CIS",
-    "VUT": "XSA",
-    "VEN": "XLM",
-    "VNM": "XSE",
-    "VIR": "XLM",
-    "PSE": "XME",
-    "YEM": "XME",
-    "ZMB": "XAF",
+    "AFG": "XSA", "ALB": "XER", "DZA": "XNF", "ASM": "XSA", "AND": "XER",
+    "AGO": "XAF", "ATG": "XLM", "ARG": "XLM", "ARM": "CIS", "ABW": "XLM",
+    "AUS": "XOC", "AUT": "XE25", "AZE": "CIS", "BHS": "XLM", "BHR": "XME",
+    "BGD": "XSA", "BRB": "XLM", "BLR": "CIS", "BEL": "XE25", "BLZ": "XLM",
+    "BEN": "XAF", "BMU": "XLM", "BTN": "XSA", "BOL": "XLM", "BIH": "XER",
+    "BWA": "XAF", "BRA": "BRA", "VGB": "XLM", "BRN": "XSA", "BGR": "XER",
+    "BFA": "XAF", "BDI": "XAF", "CPV": "XAF", "KHM": "XSE", "CMR": "XAF",
+    "CAN": "CAN", "CYM": "XLM", "CAF": "XAF", "TCD": "XAF", "CHL": "XLM",
+    "CHN": "CHN", "COL": "XLM", "COM": "XAF", "COD": "XAF", "COG": "XAF",
+    "CRI": "XLM", "CIV": "XAF", "HRV": "XER", "CUB": "XLM", "CYP": "XE25",
+    "CZE": "XE25", "DNK": "XE25", "DJI": "XAF", "DMA": "XLM", "DOM": "XLM",
+    "ECU": "XLM", "EGY": "XNF", "SLV": "XLM", "GNQ": "XAF", "ERI": "XAF",
+    "EST": "XE25", "SWZ": "XAF", "ETH": "XAF", "FRO": "XER", "FJI": "XSA",
+    "FIN": "XE25", "FRA": "XE25", "PYF": "XSA", "GAB": "XAF", "GMB": "XAF",
+    "GEO": "CIS", "DEU": "XE25", "GHA": "XAF", "GIB": "XER", "GRC": "XE25",
+    "GRL": "XLM", "GRD": "XLM", "GUM": "XSA", "GTM": "XLM", "GIN": "XAF",
+    "GNB": "XAF", "GUY": "XLM", "HTI": "XLM", "HND": "XLM", "HKG": "CHN",
+    "HUN": "XE25", "ISL": "XER", "IND": "IND", "IDN": "XSE", "IRN": "XME",
+    "IRQ": "XME", "IRL": "XE25", "ISR": "XME", "ITA": "XE25", "JAM": "XLM",
+    "JPN": "JPN", "JOR": "XME", "KAZ": "CIS", "KEN": "XAF", "KIR": "XSA",
+    "PRK": "XSE", "KOR": "XSE", "KWT": "XME", "KGZ": "CIS", "LAO": "XSE",
+    "LVA": "XE25", "LBN": "XME", "LSO": "XAF", "LBR": "XAF", "LBY": "XNF",
+    "LIE": "XER", "LTU": "XE25", "LUX": "XE25", "MAC": "CHN", "MDG": "XAF",
+    "MWI": "XAF", "MYS": "XSE", "MDV": "XSA", "MLI": "XAF", "MLT": "XE25",
+    "MHL": "XSA", "MRT": "XAF", "MUS": "XAF", "MEX": "XLM", "FSM": "XSA",
+    "MDA": "CIS", "MCO": "XER", "MNG": "XSE", "MNE": "XER", "MAR": "XNF",
+    "MOZ": "XAF", "MMR": "XSE", "NAM": "XAF", "NRU": "XSA", "NPL": "XSA",
+    "NLD": "XE25", "NCL": "XSA", "NZL": "XOC", "NIC": "XLM", "NER": "XAF",
+    "NGA": "XAF", "MKD": "XER", "MNP": "XSA", "NOR": "XER", "OMN": "XME",
+    "PAK": "XSA", "PLW": "XSA", "PAN": "XLM", "PNG": "XSA", "PRY": "XLM",
+    "PER": "XLM", "PHL": "XSE", "POL": "XE25", "PRT": "XE25", "PRI": "XLM",
+    "QAT": "XME", "ROU": "XER", "RUS": "CIS", "RWA": "XAF", "WSM": "XSA",
+    "SMR": "XER", "STP": "XAF", "SAU": "XME", "SEN": "XAF", "SRB": "XER",
+    "SYC": "XAF", "SLE": "XAF", "SGP": "XSE", "SVK": "XE25", "SVN": "XE25",
+    "SLB": "XSA", "SOM": "XAF", "ZAF": "XAF", "SSD": "XAF", "ESP": "XE25",
+    "LKA": "XSA", "KNA": "XLM", "LCA": "XLM", "VCT": "XLM", "SDN": "XAF",
+    "SUR": "XLM", "SWE": "XE25", "CHE": "XER", "SYR": "XME", "TJK": "CIS",
+    "TZA": "XAF", "THA": "XSE", "TLS": "XSE", "TGO": "XAF", "TON": "XSA",
+    "TTO": "XLM", "TUN": "XNF", "TUR": "TUR", "TKM": "CIS", "TCA": "XLM",
+    "TUV": "XSA", "UGA": "XAF", "UKR": "CIS", "ARE": "XME", "GBR": "XE25",
+    "USA": "USA", "URY": "XLM", "UZB": "CIS", "VUT": "XSA", "VEN": "XLM",
+    "VNM": "XSE", "VIR": "XLM", "PSE": "XME", "YEM": "XME", "ZMB": "XAF",
     "ZWE": "XAF"
 }
+
+# ======================
+# 数据处理
+# ======================
 
 # 只取 CL
 df_cl = df[df["type"] == "CL"]
 
-# basin 展开
+# basin × year
 df_basin = (
     df_cl[df_cl["year"].isin([2005, 2100])]
-    .pivot(index="country", columns="year", values="Value")
+    .pivot(index="basin", columns="year", values="Value")
     .dropna()
+    .reset_index()
 )
+df_basin["country"]=df_basin["basin"].str.split("_").str[0]
+df_basin["region"] = df_basin["country"].map(mapping)
+df_basin = df_basin[df_basin["region"].isin(region_direction_map)]
 
 # 相对变化率
 df_basin["rel_change"] = (df_basin[2100] - df_basin[2005]) / df_basin[2005]
-
-# ±20%
 df_basin["within_20pct"] = df_basin["rel_change"].abs() <= 0.2
 
-# 方向
-df_basin["direction"] = np.where(
-    df_basin["rel_change"] > 0, "increase",
-    np.where(df_basin["rel_change"] < 0, "decrease", "no_change")
-)
-df_basin = df_basin.reset_index()
-df_basin["cty"] = df_basin["country"].str.split("_").str[0]
-df_basin["region"] = df_basin["cty"].map(mapping)
-df_basin["region_direction"] = df_basin["region"].map(region_direction_map)
+# ======================
+# 是否检查方向（开关）
+# ======================
+if CHECK_DIRECTION:
+    df_basin["direction"] = np.where(
+        df_basin["rel_change"] > 0, "increase",
+        np.where(df_basin["rel_change"] < 0, "decrease", "no_change")
+    )
+    df_basin["region_direction"] = df_basin["region"].map(region_direction_map)
+    df_basin["same_direction"] = (
+        df_basin["direction"] == df_basin["region_direction"]
+    )
+    df_result = df_basin[
+        (df_basin["within_20pct"]) &
+        (df_basin["same_direction"])
+    ]
+else:
+    df_result = df_basin[df_basin["within_20pct"]]
 
-df_basin["same_direction"] = (
-    df_basin["direction"] == df_basin["region_direction"]
-)
-df_result = df_basin[
-    (df_basin["within_20pct"]) 
-    # &(df_basin["same_direction"])
-]
+# ======================
+# 输出
+# ======================
 df_result = df_result[[
-    "country",          # basin
+    "basin",
     "region",
     2005,
     2100,
-    "rel_change",
-    "direction",
-    "region_direction"
-]].sort_values(["region", "country"])
+    "rel_change"
+]].sort_values(["region", "basin"])
+suffix = "_" if CHECK_DIRECTION else "_NODIR"
+
+f"..._20pct_{suffix}.csv"
 df_result.to_csv(
-    "./original/CSV/compare_region_basin/basin_region_consistent_20pct_NODIR.csv",
+    f"./original/CSV/compare_region_basin/basin_region_consistent_20pct{suffix}.csv",
     index=False
 )
